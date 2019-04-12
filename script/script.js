@@ -1,7 +1,8 @@
-var list, itemField;
+var itemField, list, completedList;
 
-list = document.querySelector('.to-do-list');
 itemField = document.querySelector('.add-to-list');
+list = document.querySelector('.to-do-list');
+completedList = document.querySelector('.completed-list');
 
 //Add item in input field to to-do list
 document.querySelector('.add-to-list').addEventListener('keydown', function () {
@@ -25,6 +26,7 @@ document.querySelector('.add-to-list').addEventListener('keydown', function () {
         completeItem.type = 'image'
         completeItem.src = 'img/bx-circle.svg';
         completeItem.classList.add('complete-item');
+        completeItem.addEventListener('click', toggleComplete);
 
 
         var item = document.createElement('p');
@@ -34,18 +36,33 @@ document.querySelector('.add-to-list').addEventListener('keydown', function () {
         removeItem.type = 'image'
         removeItem.src = 'img/bxs-trash.svg';
         removeItem.classList.add('remove-item');
-        removeItem.addEventListener('click', remove);
+        removeItem.addEventListener('click', removeFromList);
 
         buttons.appendChild(completeItem);
         buttons.appendChild(item)
         buttons.appendChild(removeItem);
         newToDo.appendChild(buttons);
-        list.appendChild(newToDo);
+
+        //Insert item at top of list
+        list.insertBefore(newToDo, list.childNodes[0]);
     }
 });
 
-function remove() {
+function removeFromList() {
     var item = this.parentNode.parentNode;
     var parent = item.parentNode;
     parent.removeChild(item);
+}
+
+function toggleComplete() {
+    var item = this.parentNode.parentNode;
+    var parent = item.parentNode;
+
+    parent.removeChild(item);
+
+    if (parent.classList.contains('to-do-list')) {
+        completedList.insertBefore(item, completedList.childNodes[0]);
+    } else if (parent.classList.contains('completed-list')) {
+        list.insertBefore(item, list.childNodes[0]);
+    }
 }

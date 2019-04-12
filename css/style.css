@@ -27,15 +27,18 @@ ul {
     display: inline;
 }
 
+.list-item {
+    border-bottom: 2px solid#F0F4F5;
+    margin-bottom: 10px;
+}
+
 
 .complete-item {
-    fill: yellow;
     height: 24px;
     margin-right: 25px;
 }
 
 .remove-item {
-    fill: yellow;
     height: 24px;
     margin-right: 40px;
     float: right;
