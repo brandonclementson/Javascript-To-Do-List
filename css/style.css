@@ -1,0 +1,42 @@
+* {
+    font-family: "Quicksand", sans-serif;
+}
+
+body {
+    background-color: #F0F4F5;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.container {
+    background-color: #ffffff;
+}
+
+.add-to-list {
+    width: 90%;
+    height: 2rem;
+}
+
+.list-div {
+    display: inline;
+}
+
+.list-div p {
+    display: inline;
+}
+
+
+.complete-item {
+    fill: yellow;
+    height: 24px;
+    margin-right: 25px;
+}
+
+.remove-item {
+    fill: yellow;
+    height: 24px;
+    margin-right: 40px;
+    float: right;
+}
