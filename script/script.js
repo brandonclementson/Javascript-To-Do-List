@@ -1,13 +1,11 @@
 var itemField, list, completedList;
 
-itemField = document.querySelector('.add-to-list');
+itemField = document.querySelector('#item-field');
 list = document.querySelector('.to-do-list');
-completedList = document.querySelector('.completed-list');
 
 //Add item in input field to to-do list
-document.querySelector('.add-to-list').addEventListener('keydown', function () {
+document.querySelector('#item-field').addEventListener('keydown', function () {
     if (event.keyCode === 13) {
-
         // Prevent page from reloading
         event.preventDefault();
 
@@ -15,35 +13,34 @@ document.querySelector('.add-to-list').addEventListener('keydown', function () {
         var itemValue = itemField.value;
         itemField.value = ''
 
-        var newToDo = document.createElement('li');
-        newToDo.classList.add('list-item');
-        newToDo.classList.add('animated', 'fadeIn');
+        var newItem = document.createElement('li');
+        newItem.classList.add('list-item', 'item-incomplete');
+        //newItem.classList.add('animated', 'fadeIn');
+        var itemDiv = document.createElement('div');
+        itemDiv.classList.add('item-div');
 
-        var buttons = document.createElement('div');
-        buttons.classList.add('list-div');
-
-        var completeItem = document.createElement('i');
-        completeItem.classList.add('complete-item', 'far', 'fa-circle');
-        completeItem.addEventListener('mouseenter', iconHover);
-        completeItem.addEventListener('mouseout', iconHover);
-        completeItem.addEventListener('click', toggleComplete);
+        var completeIcon = document.createElement('i');
+        completeIcon.classList.add('complete-icon', 'far', 'fa-circle');
+        completeIcon.addEventListener('mouseenter', iconHover);
+        completeIcon.addEventListener('mouseout', iconHover);
+        completeIcon.addEventListener('click', toggleComplete);
 
 
-        var item = document.createElement('p');
-        item.textContent = itemValue;
+        var itemText = document.createElement('p');
+        itemText.textContent = itemValue;
 
-        var removeItem = document.createElement('i');
-        removeItem.classList.add('remove-item', 'fas', 'fa-trash-alt');
-        removeItem.addEventListener('click', removeFromList);
+        var removeIcon = document.createElement('i');
+        removeIcon.classList.add('remove-icon', 'fas', 'fa-trash-alt');
+        removeIcon.addEventListener('click', removeFromList);
 
         // Add elements to DOM
-        buttons.appendChild(completeItem);
-        buttons.appendChild(item);
-        buttons.appendChild(removeItem);
-        newToDo.appendChild(buttons);
+        itemDiv.appendChild(completeIcon);
+        itemDiv.appendChild(itemText);
+        itemDiv.appendChild(removeIcon);
+        newItem.appendChild(itemDiv);
 
         //Insert item at top of list
-        list.insertBefore(newToDo, list.childNodes[0]);
+        list.insertBefore(newItem, list.childNodes[0]);
     }
 });
 
@@ -57,32 +54,33 @@ function toggleComplete() {
     var item = this.parentNode.parentNode;
     var parentList = item.parentNode;
 
-    parentList.removeChild(item);
+    // Check if item has been completed
+    if (item.classList.contains('item-incomplete')) {
 
-    // Check if item is in to-do list and move to completed
-    if (parentList.classList.contains('to-do-list')) {
+        this.removeEventListener('mouseenter', iconHover);
+        this.removeEventListener('mouseout', iconHover);
 
-        this.classList.remove('far', 'fa-circle', 'fa-check-circle');
+        this.classList.remove('far', 'fa-circle');
         this.classList.add('fas', 'fa-check-circle');
 
-        completedList.insertBefore(item, completedList.childNodes[0]);
+        parentList.insertBefore(item, parentList.childNodes[parentList.childNodes.length]);
 
-    } else if (parentList.classList.contains('completed-list')) {
+    } else if (item.classList.contains('item-complete')) {
+
+        this.addEventListener('mouseenter', iconHover);
+        this.addEventListener('mouseout', iconHover);
 
         this.classList.remove('fas', 'fa-check-circle');
         this.classList.add('far', 'fa-circle');
 
-        list.insertBefore(item, list.childNodes[0]);
+        parentList.insertBefore(item, parentList.childNodes[0]);
     }
+
+    item.classList.toggle('item-incomplete');
+    item.classList.toggle('item-complete');
 }
 
 function iconHover() {
-    if (this.classList.contains('fa-circle')) {
-        this.classList.remove('fa-circle');
-        this.classList.add('fa-check-circle');
-    } else if (this.classList.contains('fa-check-circle')) {
-        this.classList.remove('fa-check-circle');
-        this.classList.add('fa-circle');
-
-    }
+    this.classList.toggle('fa-circle');
+    this.classList.toggle('fa-check-circle');
 }

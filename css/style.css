@@ -1,50 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
 * {
     font-family: "Quicksand", sans-serif;
 }
 
 body {
-    background-color: #F0F4F5;
+    margin: 0 auto;
+    max-width: 1024px;
+    display: grid;
+    background: #ECF0F1;
 }
 
-ul {
-    list-style-type: none;
+h1 {
+    color: #7F8C8D;
+    font-size: 4rem;
+    font-weight: normal;
+    text-align: center;
+    margin: 0 1em;
+}
+
+h2 {
+    color: #BDC3C7;
+    font-size: 1.5rem;
+    font-weight: normal;
+    text-align: center;
+}
+
+span {
+    font-weight: bold;
 }
 
 i {
     cursor: pointer;
-    color: red;
+    color: #586186;
 }
 
-.container {
-    background-color: #ffffff;
+li {
+    list-style-type: none;
 }
 
-.add-to-list {
-    width: 90%;
+
+input {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #BDC3C7;
+    font-size: 2rem;
+    color: #7F8C8D;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+
+.header {
+    padding: 45px;
+}
+
+#item-field {
+    width: 100%;
     height: 2rem;
 }
 
-.list-div {
-    display: inline;
+.to-do-list {
+    margin-top: 30px;
 }
 
-.list-div p {
+.item-div {
+    padding: 10px;
+
+}
+
+
+.item-div:hover {
+    background: #E3E7E8;
+}
+
+.item-div:hover .remove-icon {
+    display: block !important;
+}
+
+.item-div p {
     display: inline;
+    color: #586186;
+    font-size: 1.2rem;
 }
 
 .list-item {
-    border-bottom: 2px solid#F0F4F5;
     margin-bottom: 10px;
 }
 
 
-.complete-item {
-    height: 24px;
+.complete-icon {
     margin-right: 25px;
 }
 
-.remove-item {
-    height: 24px;
+.remove-icon {
     margin-right: 40px;
+    padding-top: 4px;
     float: right;
+    color: #7F8C8D;
+    display: none !important;
+}
+
+.item-complete p {
+    text-decoration: line-through;
 }
