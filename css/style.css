@@ -7,7 +7,6 @@
 body {
     margin: 0 auto;
     max-width: 1024px;
-    display: grid;
     background: #ECF0F1;
 }
 
@@ -28,6 +27,7 @@ h2 {
 
 span {
     font-weight: bold;
+    color: #EA4C89;
 }
 
 i {
@@ -36,8 +36,19 @@ i {
 }
 
 li {
-    list-style-type: none;
+    list-style: none;
 }
+
+.fade li {
+    transition: all 0.5s ease;
+    opacity: 0;
+
+}
+
+.fade li.show {
+    opacity: 1;
+}
+
 
 
 input {
@@ -48,6 +59,14 @@ input {
     color: #7F8C8D;
     padding: 25px;
     margin-top: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.container {
+    display: grid;
 }
 
 
@@ -91,6 +110,7 @@ input {
 
 .complete-icon {
     margin-right: 25px;
+    color: #EA4C89;
 }
 
 .remove-icon {

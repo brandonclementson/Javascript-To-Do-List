@@ -39,8 +39,13 @@ document.querySelector('#item-field').addEventListener('keydown', function () {
         itemDiv.appendChild(removeIcon);
         newItem.appendChild(itemDiv);
 
+
         //Insert item at top of list
         list.insertBefore(newItem, list.childNodes[0]);
+
+        setTimeout(function () {
+            newItem.classList.add('show');
+        }, 10);
     }
 });
 
